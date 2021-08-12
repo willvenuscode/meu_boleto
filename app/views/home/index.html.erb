@@ -1,0 +1,34 @@
+<% if flash[:alert].present?%>
+<h4>Os seguintes erros foram encontrados: </h4>
+  <% flash[:alert].each do |type, msg| %>
+    <div>
+      <%= "#{type}: #{msg.join(", ")}" %>
+    </div>
+    <br>
+  <% end %>
+<% end %>
+
+<%= form_with url: "/home/teste", method: :post do |form| %>
+  <%= form.label :amount, "Valor:" %>
+  <%= form.number_field :amount, step: :any %>
+  <%= form.label :description, "Descrição:" %>
+  <%= form.text_field :description %>
+  <%= form.label :customer_person_name, "Nome:" %>
+  <%= form.text_field :customer_person_name %>
+  <%= form.label :customer_cnpj_cpf, "CNPJ/CPF:" %>
+  <%= form.text_field :customer_cnpj_cpf %>
+  <%= form.label :customer_zipcode, "Zip Code:" %>
+  <%= form.text_field :customer_zipcode %>
+  <%= form.label :expire_at, "Vencimento:" %>
+  <%= form.date_field :expire_at %>
+  <%= form.label :customer_address, "Endereço:" %>
+  <%= form.text_field :customer_address %>
+  <%= form.label :customer_neighborhood, "Bairro:" %>
+  <%= form.text_field :customer_neighborhood %>
+  <%= form.label :customer_city_name, "Cidade:" %>
+  <%= form.text_field :customer_city_name %>
+  <%= form.label :customer_state, "Estado:" %>
+  <%= form.text_field :customer_state %>
+
+  <%= form.submit "Criar" %>
+<% end %>
