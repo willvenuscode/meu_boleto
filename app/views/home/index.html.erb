@@ -1,3 +1,6 @@
+<h1>Gerar Boleto</h1>
+<p>Preencha os campos a seguir:</p>
+
 <% if flash[:alert].present?%>
 <h4>Os seguintes erros foram encontrados: </h4>
   <% flash[:alert].each do |type, msg| %>
@@ -8,16 +11,16 @@
   <% end %>
 <% end %>
 
-<%= form_with url: "/home/teste", method: :post do |form| %>
+<%= form_with url: "/home/criar_boleto", method: :post do |form| %>
   <%= form.label :amount, "Valor:" %>
-  <%= form.number_field :amount, step: :any %>
+  <%= form.number_field :amount, placeholder:"Ex.: 10.5", step: :any %>
   <%= form.label :description, "Descrição:" %>
-  <%= form.text_field :description %>
+  <%= form.text_field :description, placeholder:"Ex.: Matrícula" %>
   <%= form.label :customer_person_name, "Nome:" %>
   <%= form.text_field :customer_person_name %>
   <%= form.label :customer_cnpj_cpf, "CNPJ/CPF:" %>
   <%= form.text_field :customer_cnpj_cpf %>
-  <%= form.label :customer_zipcode, "Zip Code:" %>
+  <%= form.label :customer_zipcode, "CPF:" %>
   <%= form.text_field :customer_zipcode %>
   <%= form.label :expire_at, "Vencimento:" %>
   <%= form.date_field :expire_at %>
@@ -28,7 +31,7 @@
   <%= form.label :customer_city_name, "Cidade:" %>
   <%= form.text_field :customer_city_name %>
   <%= form.label :customer_state, "Estado:" %>
-  <%= form.text_field :customer_state %>
+  <%= form.text_field :customer_state, placeholder: "Ex.: PE" %>
 
   <%= form.submit "Criar" %>
 <% end %>
