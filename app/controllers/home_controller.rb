@@ -20,7 +20,7 @@ class HomeController < ApplicationController
     if result.persisted?
       redirect_to "https://sandbox.boletosimples.com.br/boletos/#{result.id}"
     else
-      redirect_to root_path, flash[:alert] = result.response_errors
+      redirect_to home_index_path, flash[:alert] = result.response_errors
     end
   end
 end

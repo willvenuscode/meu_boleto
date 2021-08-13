@@ -5,7 +5,7 @@
 <h4>Os seguintes erros foram encontrados: </h4>
   <% flash[:alert].each do |type, msg| %>
     <div>
-      <%= "#{type}: #{msg.join(", ")}" %>
+      <%= "#{type}: #{msg.is_a?(Array) ? msg.join(", ") : msg}" %>
     </div>
     <br>
   <% end %>
@@ -13,25 +13,25 @@
 
 <%= form_with url: "/home/criar_boleto", method: :post do |form| %>
   <%= form.label :amount, "Valor:" %>
-  <%= form.number_field :amount, placeholder:"Ex.: 10.5", step: :any %>
+  <%= form.number_field :amount, placeholder:"Ex.: 10.5", required: true, step: :any %>
   <%= form.label :description, "Descrição:" %>
-  <%= form.text_field :description, placeholder:"Ex.: Matrícula" %>
+  <%= form.text_field :description, required: true, placeholder: "Ex.: Matrícula" %>
   <%= form.label :customer_person_name, "Nome:" %>
-  <%= form.text_field :customer_person_name %>
+  <%= form.text_field :customer_person_name, required: true %>
   <%= form.label :customer_cnpj_cpf, "CNPJ/CPF:" %>
-  <%= form.text_field :customer_cnpj_cpf %>
-  <%= form.label :customer_zipcode, "CPF:" %>
-  <%= form.text_field :customer_zipcode %>
+  <%= form.text_field :customer_cnpj_cpf, required: true %>
+  <%= form.label :customer_zipcode, "CEP:" %>
+  <%= form.text_field :customer_zipcode, required: true %>
   <%= form.label :expire_at, "Vencimento:" %>
-  <%= form.date_field :expire_at %>
+  <%= form.date_field :expire_at, required: true %>
   <%= form.label :customer_address, "Endereço:" %>
-  <%= form.text_field :customer_address %>
+  <%= form.text_field :customer_address, required: true %>
   <%= form.label :customer_neighborhood, "Bairro:" %>
-  <%= form.text_field :customer_neighborhood %>
+  <%= form.text_field :customer_neighborhood, required: true %>
   <%= form.label :customer_city_name, "Cidade:" %>
-  <%= form.text_field :customer_city_name %>
+  <%= form.text_field :customer_city_name, required: true %>
   <%= form.label :customer_state, "Estado:" %>
-  <%= form.text_field :customer_state, placeholder: "Ex.: PE" %>
+  <%= form.select :customer_state, ["SE", "PE"], required: true %>
 
   <%= form.submit "Criar" %>
 <% end %>
