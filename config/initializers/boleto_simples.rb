@@ -1,5 +1,5 @@
 BoletoSimples.configure do |c|
   c.environment = :sandbox
-  c.user_agent = 'willvenusweb@outlook.com'
-  c.api_token = 'hYwW8kjKHoW70K1mbLng5RtCA7F_M8NNGNvx6CDkGaQ'
+  c.user_agent = Rails.application.credentials[:user_agent]
+  c.api_token = Rails.application.credentials[:api_token]
 end
