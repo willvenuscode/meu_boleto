@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_08_14_002509) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "billets", force: :cascade do |t|
     t.bigint "remote_id"
     t.string "status"

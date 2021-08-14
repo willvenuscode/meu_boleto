@@ -251,7 +251,7 @@ DEPENDENCIES
   capybara (>= 3.26)
   jbuilder (~> 2.7)
   listen (~> 3.3)
-  pg
+  pg (>= 0.18, < 2.0)
   pry
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)

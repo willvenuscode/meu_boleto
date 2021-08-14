@@ -31,7 +31,7 @@
   <%= form.label :customer_city_name, "Cidade:" %>
   <%= form.text_field :customer_city_name, required: true %>
   <%= form.label :customer_state, "Estado:" %>
-  <%= form.select :customer_state, ["SE", "PE"], required: true %>
+  <%= form.select :customer_state, ::States::ALL, required: true %>
 
   <%= form.submit "Criar" %>
 <% end %>
