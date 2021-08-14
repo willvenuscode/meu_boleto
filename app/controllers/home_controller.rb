@@ -14,13 +14,21 @@ class HomeController < ApplicationController
     customer_state: params[:customer_state],
     amount: params[:amount],
     description: params[:description]
-    }
-  
+  }
+
     result = BoletoSimples::BankBillet.create(input)
+
     if result.persisted?
-      redirect_to "https://sandbox.boletosimples.com.br/boletos/#{result.id}"
+      att = {remote_id: result.id, status: result.status}
+      billet = Billet.create(att)
+
+      if billet.valid?
+        redirect_to result.attributes.dig(:formats, :pdf)
+      else
+        redirect_to home_index_path, alert: billet.errors.full_messages
+      end
     else
-      redirect_to home_index_path, flash[:alert] = result.response_errors
+      redirect_to home_index_path, alert: result.response_errors
     end
   end
 end

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      post "payment", to: "billet#payment"
+      post "payment", to: "billets#payment"
     end 
   end
 
